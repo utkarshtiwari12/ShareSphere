@@ -8,18 +8,19 @@ import {
   createBrowserRouter,
   createRoutesFromElements,
 } from "react-router-dom";
-//import { Auth, Expense, Feedback, Home, Income } from "./pages/index.js";
+import { Home, Notes, Requests, Leaderboard, NotesByTeachers, Review } from "./pages/index.js";
 import { Provider } from "react-redux";
 import store from "./store/store.js";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path={"/"} element={<App />}>
-      {/* <Route path="/" element={<Home />} /> */}
-      {/* <Route path="/expenses" element={<Expense />} />
-      <Route path="/incomes" element={<Income />} />
-      <Route path="/feedback" element={<Feedback />} />
-      <Route path="/auth" element={<Auth />} /> */}
+      <Route path="/" element={<Home />} />
+      <Route path="/notes" element={<Notes />} />
+      <Route path="/requests" element={<Requests />} />
+      <Route path="/leaderboard" element={<Leaderboard />} />
+      <Route path="/notesByTeachers" element={<NotesByTeachers />} />
+      <Route path="/reviews" element={<Review />} />
     </Route>
   )
 );
@@ -28,7 +29,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <Provider store={store}>
       <RouterProvider router={router}>
-        <App className="dark" />
+        <App />
       </RouterProvider>
     </Provider>
   </React.StrictMode>

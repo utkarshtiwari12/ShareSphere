@@ -68,9 +68,9 @@ function Navbar() {
 
     return (
         <nav>
-        <div className="grid-flow-col px-[4rem] py-[1rem] grid-cols-2 items-center font-poppins hidden lg:grid">
-            <Link to={"/"} className="hover:text-[#fd366e] ease-in-out">
-            <div className="font-bold text-2xl">ShareSphere</div>
+        <div className="grid-flow-col px-[4rem] py-[1rem] grid-cols-2 items-center font-poppins hidden lg:grid shadow-lg sticky top-0 bg-white">
+            <Link to={"/"} className="text-[#fd366e] hover:text-black ease-in-out">
+            <div className="font-bold text-3xl">ShareSphere</div>
             </Link>
             <div className="">
             {" "}
@@ -94,7 +94,7 @@ function Navbar() {
                 </MenubarMenu>
                 
                 <MenubarMenu>
-                <Link to={"/leaderBaord"}>
+                <Link to={"/leaderboard"}>
                     <MenubarTrigger>LeaderBoard</MenubarTrigger>
                 </Link>
                 </MenubarMenu>
@@ -128,8 +128,8 @@ function Navbar() {
         <div className="relative font-poppins w-full pt-4 bg-transparent lg:hidden">
             <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-2 sm:px-6 lg:px-8">
             <div className="inline-flex items-center space-x-2">
-                <Link to={"/"} className="hover:text-[#fd366e]">
-                <h1 className="font-bold text-lg">ShareSphere</h1>
+                <Link to={"/"} className="text-[#fd366e] hover:text-black">
+                <h1 className="font-bold text-xl">ShareSphere</h1>
                 </Link>
             </div>
             <div className="lg:hidden">
@@ -142,7 +142,7 @@ function Navbar() {
                     <div className="flex items-center justify-between">
                         <div className="inline-flex items-center space-x-2">
                         <Link to={"/"} onClick={toggleMenu}>
-                            <h1 className="font-extrabold text-lg text-black hover:text-[#fd366e]">
+                            <h1 className="font-extrabold text-lg hover:text-black text-[#fd366e]">
                             ShareSphere
                             </h1>
                         </Link>
