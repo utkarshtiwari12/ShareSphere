@@ -67,8 +67,8 @@ function Navbar() {
     };
 
     return (
-        <nav>
-        <div className="grid-flow-col px-[4rem] py-[1rem] grid-cols-2 items-center font-poppins hidden lg:grid shadow-lg sticky top-0 bg-white">
+        <nav className="sticky top-0">
+        <div className="grid-flow-col px-[4rem] py-[1rem] grid-cols-2 items-center font-poppins hidden lg:grid shadow-lg bg-white">
             <Link to={"/"} className="text-[#fd366e] hover:text-black ease-in-out">
             <div className="font-bold text-3xl">ShareSphere</div>
             </Link>

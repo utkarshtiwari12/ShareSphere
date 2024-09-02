@@ -1,7 +1,43 @@
-import React from "react";
 import hero from '../../assets/hero-img.svg'
 
+import React, { useEffect, useState, useCallback } from "react";
+import authservice from "@/appwrite/auth";
+import { useDispatch } from "react-redux";
+import { login } from "@/store/authSlice";
+import { Link, useNavigate } from "react-router-dom";
+
+
 function Home() {
+
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const [userId, setUserId] = useState("");
+    const [loaderK, setLoaderK] = useState(false);
+
+
+    const fetchData = useCallback(async () => {
+        try {
+        setLoaderK(true);
+        const userData = await authservice.getCurrentAccount();
+            if (userData)
+            {
+            dispatch(login(userData));
+            setUserId(userData.$id);
+            console.log("USER LOGGED IN SUCCESSFULLY");
+            }
+        
+        setLoaderK(false);
+        } catch (error) {
+        console.log("USER IS NOT LOGGED IN", error);
+        navigate("/auth");
+        }
+    }, [dispatch, navigate, userId]);
+
+    useEffect(() => {
+        fetchData();
+    }, [fetchData]);
+
+
     return (
         <>
         <div class="w-screen h-[90vh] px-2 md:px-6 py-4 md:py-6 bg-white md:flex">
