@@ -1,7 +1,7 @@
 import React from "react";
 import authservice from "@/appwrite/auth";
 
-function Auths() {
+function Auth() {
     const loginWithGoogleAuth = async () => {
         await authservice.loginWithGoogle();
     };
@@ -13,7 +13,7 @@ function Auths() {
         </h1>
         <button
             onClick={loginWithGoogleAuth}
-            className="bg-[#fd366e] pl-5 py-3 rounded-lg capitalize font-semibold text-white text-lg flex gap-3 hover:bg-red-600 mx-auto lg:w-[20%]"
+            className="bg-[#FC5B3F] pl-5 py-3 rounded-lg capitalize font-semibold text-white text-lg flex gap-3 hover:bg-red-600 mx-auto lg:w-[20%]"
         >
             <span>Login with Google</span>
             <span>
@@ -24,4 +24,4 @@ function Auths() {
     );
 }
 
-export default Auths;
+export default Auth;

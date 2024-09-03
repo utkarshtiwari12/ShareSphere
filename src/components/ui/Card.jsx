@@ -13,7 +13,7 @@ function Card({$id, title, content}) {
             <p className="text-center pb-7 mx-7">
                 {content}
             </p>
-            <button className="py-2 px-3 w-full font-semibold bg-[#fd366e] rounded-lg text-white">
+            <button className="py-2 px-3 w-full font-semibold bg-[#FC5B3F] rounded-lg text-white">
                 Get -&gt;
             </button>
             </div>

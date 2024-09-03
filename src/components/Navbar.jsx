@@ -69,7 +69,7 @@ function Navbar() {
     return (
         <nav className="sticky top-0 shadow-lg z-50 bg-white">
         <div className="grid-flow-col w-[100vw] px-[4rem] py-[1rem] grid-cols-2 items-center font-poppins hidden lg:grid">
-            <Link to={"/"} className="text-[#fd366e] hover:text-black ease-in-out">
+            <Link to={"/"} className="text-[#FC5B3F] hover:text-black ease-in-out">
             <div className="font-bold text-3xl">ShareSphere</div>
             </Link>
             <div className="">
@@ -119,7 +119,7 @@ function Navbar() {
                 </MenubarMenu>
 
                 <MenubarMenu>
-                <MenubarTrigger onClick={handleLogout}>LogOut</MenubarTrigger>
+                <MenubarTrigger onClick={handleLogout} className='text-red-700'>LogOut</MenubarTrigger>
                 </MenubarMenu>
             </Menubar>
             </div>
@@ -128,7 +128,7 @@ function Navbar() {
         <div className="relative font-poppins w-full pt-4 bg-transparent lg:hidden">
             <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-2 sm:px-6 lg:px-8">
             <div className="inline-flex items-center space-x-2">
-                <Link to={"/"} className="text-[#fd366e] hover:text-black">
+                <Link to={"/"} className="text-[#FC5B3F] hover:text-black">
                 <h1 className="font-bold text-xl">ShareSphere</h1>
                 </Link>
             </div>
@@ -142,7 +142,7 @@ function Navbar() {
                     <div className="flex items-center justify-between">
                         <div className="inline-flex items-center space-x-2">
                         <Link to={"/"} onClick={toggleMenu}>
-                            <h1 className="font-extrabold text-lg hover:text-black text-[#fd366e]">
+                            <h1 className="font-extrabold text-lg hover:text-black text-[#FC5B3F]">
                             ShareSphere
                             </h1>
                         </Link>
@@ -167,7 +167,7 @@ function Navbar() {
                             onClick={toggleMenu}
                             className="-m-3 flex items-center rounded-md p-3 text-sm font-semibold hover:bg-gray-50"
                             >
-                            <span className="ml-3 text-base font-medium hover:text-[#fd366e] text-gray-900">
+                            <span className="ml-3 text-base font-medium hover:text-[#FC5B3F] text-gray-900">
                                 {item.name}
                             </span>
                             </Link>
@@ -176,7 +176,7 @@ function Navbar() {
                     </div>
                     <button
                         type="button"
-                        className="mt-4 w-full rounded-md bg-black px-3 py-2 text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black hover:bg-[#fd366e] hover:text-white"
+                        className="mt-4 w-full rounded-md bg-black px-3 py-2 text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black hover:bg-[#FC5B3F] hover:text-white"
                         onClick={() => {
                         handleLogout();
                         toggleMenu();
