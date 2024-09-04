@@ -13,7 +13,7 @@ function Auth() {
         </h1>
         <button
             onClick={loginWithGoogleAuth}
-            className="bg-[#FC5B3F] pl-5 py-3 rounded-lg capitalize font-semibold text-white text-lg flex gap-3 hover:bg-red-600 mx-auto lg:w-[20%]"
+            className="bg-[#FC5B3F] px-5 py-3 rounded-lg capitalize font-semibold text-white text-lg flex gap-3 hover:bg-red-600 mx-auto lg:w-[20%]"
         >
             <span>Login with Google</span>
             <span>

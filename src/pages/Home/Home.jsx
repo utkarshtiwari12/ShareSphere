@@ -1,12 +1,9 @@
 import hero from '../../assets/hero-img.svg'
-import Card from '@/components/ui/Card';
-
 import React, { useEffect, useState, useCallback } from "react";
 import authservice from "@/appwrite/auth";
 import { useDispatch } from "react-redux";
 import { login } from "@/store/authSlice";
 import { Link, useNavigate } from "react-router-dom";
-import { ID } from 'appwrite';
 
 
 function Home() {
@@ -137,24 +134,7 @@ function Home() {
             <div
             className="cards flex flex-wrap justify-between flex-col md:flex-row gap-10 md:gap-14"
             >
-                <div key={ID.unique()}>
-                    <Card />      
-                </div>
-                <div key={ID.unique()}>
-                    <Card />      
-                </div>
-                <div key={ID.unique()}>
-                    <Card />      
-                </div>
-                <div key={ID.unique()}>
-                    <Card />      
-                </div>
-                <div key={ID.unique()}>
-                    <Card />      
-                </div>
-                <div key={ID.unique()}>
-                    <Card />      
-                </div>
+                {/* Add Cards */}
             </div>
         </div>
     </div>
