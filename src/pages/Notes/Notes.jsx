@@ -9,24 +9,28 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
+import note from '@/assets/note.png'
 import authservice from "@/appwrite/auth";
 import { login } from "@/store/authSlice";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import StuService from "@/appwrite/stu.config";
+import fileService from "@/appwrite/fileService";
 
 
 const Notes = () => {
     const [doc, setDoc] = useState({
     title: "",
     content: "",
-    featuredDoc: ""
     });
     const [userId, setUserId] = useState("");
+    const [userLabel, setUserLabel] = useState("");
+    const [selectedFile, setSelectedFile] = useState(null);
     const [loaderK, setLoaderK] = useState(true);
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [length, setLength] = useState(0);
+    const [downURL, setDownURL] = useState("");
     const [finalDocs, setFinalDocs] = useState({});
 
     const handleChange = (e) => {
@@ -37,31 +41,49 @@ const Notes = () => {
         [name]: value,
         }));
     };
+    
+    const handleDoc = async (e) => {
+        setSelectedFile(e.target.files[0]);
+    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
         try {
-        await StuService.createDoc(doc.title, doc.content, doc.featuredDoc, userId);
-        console.log("Doc ADDED SUCCESSFULLY");
-        setDoc({
-            title: "",
-            content: "",
-            featuredDoc: ""
-        });
+
+            const file = selectedFile ? await fileService.uploadFile(selectedFile) : null;
+            console.log(file);
+
+            const docs = await StuService.createDoc(doc.title, doc.content, file.$id, userId);
+            console.log("Doc ADDED SUCCESSFULLY", docs);
+            setDoc({
+                title: "",
+                content: "",
+            });
         } catch (error) {
         console.log("ERROR ON ADDING Doc ON FRONT-END", error);
         }
     };
 
-    const handleDelete = async (id) => {
+    const handleDelete = async (postId, docId) => {
         try {
-        await StuService.deleteDoc(id);
+            await StuService.deleteDoc(postId);
+            await fileService.deleteFile(docId)
         console.log("Doc DELETED SUCCESSFULLY");
         } catch (error) {
         console.log("ERROR ON DELETEING Doc ON FRONT-END", error);
         }
     };
+
+    const handleDownload = async (docId) => {
+        try {
+            const downloadedFile = fileService.downloadFile(docId);
+            setDownURL(downloadedFile.href);
+            console.log("Doc Got SUCCESSFULLY");
+        } catch (error) {
+            console.log("ERROR ON DOWNLOADING Doc ON FRONT-END", error);
+        }
+    }
 
     const fetchUser = useCallback(async () => {
         try {
@@ -69,7 +91,9 @@ const Notes = () => {
         if (userData) {
             dispatch(login(userData));
             setUserId(userData.$id);
+            setUserLabel(userData.labels[0]);
             console.log("USER LOGGED IN SUCCESSFULLY");
+            console.log(userLabel);
         }
 
         const docData = await StuService.getDocs([]);
@@ -110,7 +134,7 @@ const Notes = () => {
             </CardHeader>
             <form action="" method="post" onSubmit={handleSubmit}>
             <CardContent>
-                <div className="grid lg:grid-cols-3 gap-5 lg:gap-[3rem]">
+                <div className="grid lg:grid-cols-4 gap-5 lg:gap-[3rem]">
                 <div className="">
                     <Label htmlFor="title">Title</Label>
                     <Input
@@ -135,6 +159,19 @@ const Notes = () => {
                     className="capitalize"
                     value={doc.content}
                     onChange={handleChange}
+                    required={true}
+                    />
+                </div>
+                <div className="">
+                    <Label htmlFor="featuredDoc">Doc</Label>
+                    <Input
+                    type="file"
+                    id="featuredDoc"
+                    name="featuredDoc"
+                    placeholder="Doc"
+                    className="capitalize"
+                    onChange={handleDoc}
+                    accept="image/png, image/jpg, application/pdf"
                     required={true}
                     />
                 </div>
@@ -165,20 +202,30 @@ const Notes = () => {
                 <div className="mt-10 flex gap-y-6 justify-center items-center">
                     <ul className="flex flex-col justify-center flex-wrap lg:flex-row gap-6">
                         {finalDocs.map((item) => (
-                        <Card className="flex items-center overflow-y-auto shadow-xl pt-6 w-80 min-h-60 max-h-96" key={item.$id}>
+                        <Card className="flex items-center overflow-y-auto shadow-xl pt-6 w-80 min-h-60 max-h-[450px]" key={item.$id}>
                             <CardContent className="flex w-full items-center justify-between flex-col gap-5">
-                            <div className="flex flex-col items-center justify-between gap-8 w-full">
+                            <div className="flex flex-col items-center justify-between gap-4 w-full">
+                                <div>
+                                    <img src={note} alt="note-logo" width='50px'/>
+                                </div>
                                 <div className="font-semibold">{item.title}</div>
                                 <div className="">
                                 {" "}
                                 <span>{item.content}</span>
                                 </div>
+                                <div className="flex">
+                                    <Button className='hover:bg-[#FC5B3F]'
+                                    onClick={() => handleDownload(item.featuredDoc)}
+                                    >
+                                        <a href={downURL}><span>Download</span></a>
+                                    </Button>
+                                </div>
                             </div>
 
-                            {(item.userId === userId) ? <div className="flex items-center gap-8">
+                            {(item.userId === userId || userLabel === 'admin') ? <div className="flex items-center gap-8">
                                 <Button
-                                className="flex items-center gap-1 hover:bg-[#FC5B3F] hover:text-white"
-                                onClick={() => handleDelete(item.$id)}
+                                className="flex items-center gap-1 bg-[#FC5B3F] hover:text-white"
+                                onClick={() => handleDelete(item.$id, item.featuredDoc)}
                                 >
                                 <i className="fa-solid fa-trash"></i>
                                 </Button>
