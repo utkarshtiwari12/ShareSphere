@@ -8,14 +8,10 @@ import StuService from "@/appwrite/stu.config";
 import {
     Card,
     CardContent,
-    CardDescription,
-    CardHeader,
-    CardTitle,
 } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import note from '@/assets/note.png'
+import fileService from "@/appwrite/fileService";
 
 
 function Home() {
@@ -28,6 +24,8 @@ function Home() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [userId, setUserId] = useState("");
+    const [userLabel, setUserLabel] = useState("");
+    const [username, setUsername] = useState("");
     const [loaderK, setLoaderK] = useState(false);
     const [finalDocs, setFinalDocs] = useState({});
     const [downURL, setDownURL] = useState("");
@@ -61,6 +59,8 @@ function Home() {
             {
             dispatch(login(userData));
             setUserId(userData.$id);
+            setUsername(userData.name);
+            setUserLabel(userData.labels[0]);
             console.log("USER LOGGED IN SUCCESSFULLY");
             }
 
@@ -88,7 +88,8 @@ function Home() {
     return (
     <>
         <div className="w-screen h-[90vh] px-2 md:px-6 py-4 md:py-6 md:flex">
-            <div className="w-full md:w-1/2 md:flex justify-center flex-col md:ml-12 px-4">
+                <div className="w-full md:w-1/2 md:flex justify-center flex-col md:ml-12 px-4">
+                    {username ? (<h1 className='typed-out md:text-4xl font-semibold pb-6 text-2xl'>Hello {username},</h1>) : (null)}
                 <h1 className="text-black md:text-8xl font-semibold mb-10 text-6xl">
                     <span className="text-[#FC5B3F]">Welcome</span> to ShareSphere community...
                 </h1>

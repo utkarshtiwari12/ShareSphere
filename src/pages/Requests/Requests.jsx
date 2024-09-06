@@ -168,7 +168,7 @@ const Requests = () => {
                         {finalDocs.map((item) => (
                         <Card className="flex items-center overflow-y-auto shadow-xl pt-6 w-80 min-h-60 max-h-[450px]" key={item.$id}>
                             <CardContent className="flex w-full items-center justify-between flex-col gap-5">
-                            <div className="flex flex-col items-center justify-between gap-4 w-full">
+                            <div className="flex flex-col text-center items-center justify-between gap-4 w-full">
                                 <div className="font-semibold">{item.title}</div>
                                 <div className="">
                                 {" "}
