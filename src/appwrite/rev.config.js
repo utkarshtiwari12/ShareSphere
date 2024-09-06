@@ -2,7 +2,7 @@ import conf from "../conf/conf";
 
 import { Client, ID, Databases } from "appwrite";
 
-export class ReqService {
+export class RevService {
     client = new Client();
     databases;
 
@@ -13,11 +13,11 @@ export class ReqService {
         this.databases = new Databases(this.client);
     }
 
-    async createReq( title, content, userId ) {
+    async createRev( title, content, userId ) {
         try {
         return await this.databases.createDocument(
             conf.appwriteDatabseId,
-            conf.appwriterRequestCollectionId,
+            conf.appwriterReviewCollectionId,
             ID.unique(),
             {
             title,
@@ -26,15 +26,15 @@ export class ReqService {
             }
         );
         } catch (error) {
-        console.log("Appwrite service :: createReq :: error", error);
+        console.log("Appwrite service :: createRev :: error", error);
         }
     }
 
-    async updateReq( id, {title, content, status}) {
+    async updateRev( id, {title, content, status}) {
         try {
             return await this.databases.updateDocument(
                 conf.appwriteDatabseId,
-                conf.appwriterRequestCollectionId,
+                conf.appwriterReviewCollectionId,
                 id,
                 {
                     title,
@@ -43,44 +43,44 @@ export class ReqService {
                 }
             )
         } catch (error) {
-            console.log("Appwrite service :: updateReq :: error", error);
+            console.log("Appwrite service :: updateRev :: error", error);
         }
     }
 
-    async deleteReq(id) {
+    async deleteRev(id) {
         try {
         return await this.databases.deleteDocument(
             conf.appwriteDatabseId,
-            conf.appwriterRequestCollectionId,
+            conf.appwriterReviewCollectionId,
             id
         );
         } catch (error) {
-        throw console.log("Appwrite service :: deleteReq:: error", error);
+        throw console.log("Appwrite service :: deleteRev:: error", error);
         }
     }
-    async getReq(id) {
+    async getRev(id) {
         try {
         return await this.databases.getDocument(
             conf.appwriteDatabseId,
-            conf.appwriterRequestCollectionId,
+            conf.appwriterReviewCollectionId,
             id
         );
         } catch (error) {
-        throw console.log("Appwrite service :: getReq :: error", error);
+        throw console.log("Appwrite service :: getRev :: error", error);
         }
     }
-    async getReqs() {
+    async getRevs() {
         try {
         return await this.databases.listDocuments(
             conf.appwriteDatabseId,
-            conf.appwriterRequestCollectionId,
+            conf.appwriterReviewCollectionId,
         );
         } catch (error) {
-        throw console.log("Appwrite service :: getReqs :: error", error);
+        throw console.log("Appwrite service :: getRevs :: error", error);
         }
     }
 }
 
-const reqService = new ReqService();
+const revService = new RevService();
 
-export default reqService;
+export default revService;

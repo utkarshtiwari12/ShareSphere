@@ -191,7 +191,7 @@ const Notes = () => {
             </form>
         </Card>
 
-        {/* all expenses section  */}
+        {/* all notes section  */}
         {loaderK ? (
             <div className="mt-10 text-center">
             <div className="loader mx-auto"></div>

@@ -153,7 +153,7 @@ const Requests = () => {
             </form>
         </Card>
 
-        {/* all expenses section  */}
+        {/* all requests section  */}
         {loaderK ? (
             <div className="mt-10 text-center">
             <div className="loader mx-auto"></div>
