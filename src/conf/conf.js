@@ -8,6 +8,12 @@ const conf = {
     appwriteTeacherCollectionId: String(
         import.meta.env.VITE_APPWRITE_TEACHER_COLLECTION_ID
     ),
+    appwriterReviewCollectionId: String(
+        import.meta.env.VITE_APPWRITE_REVIEW_COLLECTION_ID
+    ),
+    appwriterRequestCollectionId: String(
+        import.meta.env.VITE_APPWRITE_REQUEST_COLLECTION_ID
+    ),
     appwriteBucketId: String(import.meta.env.VITE_APPWRITE_BUCKET_ID),
 };
 

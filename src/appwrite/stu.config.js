@@ -35,7 +35,7 @@ export class StuService {
         try {
             return await this.databases.updateDocument(
                 conf.appwriteDatabseId,
-                conf.appwriteCollectionId,
+                conf.appwriteStudentCollectionId,
                 id,
                 {
                     title,

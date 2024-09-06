@@ -14,7 +14,7 @@ import authservice from "@/appwrite/auth";
 import { login } from "@/store/authSlice";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import StuService from "@/appwrite/stu.config";
+import stuService from "@/appwrite/stu.config";
 import fileService from "@/appwrite/fileService";
 
 
@@ -55,7 +55,7 @@ const Notes = () => {
             console.log(file);
 
             if (file) {
-                const docs = await StuService.createDoc(doc.title, doc.content, file.$id, userId);
+                const docs = await stuService.createDoc(doc.title, doc.content, file.$id, userId);
             console.log("Doc ADDED SUCCESSFULLY", docs);
             setDoc({
                 title: "",
@@ -69,7 +69,7 @@ const Notes = () => {
 
     const handleDelete = async (postId, docId) => {
         try {
-            await StuService.deleteDoc(postId);
+            await stuService.deleteDoc(postId);
             await fileService.deleteFile(docId)
         console.log("Doc DELETED SUCCESSFULLY");
         } catch (error) {
@@ -98,7 +98,7 @@ const Notes = () => {
             console.log(userLabel);
         }
 
-        const docData = await StuService.getDocs([]);
+        const docData = await stuService.getDocs([]);
         const filteredDocs = docData.documents.filter(
             (doc) => doc.userId
         );

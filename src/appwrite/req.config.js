@@ -1,8 +1,8 @@
 import conf from "../conf/conf";
 
-import { Client, ID, Databases} from "appwrite";
+import { Client, ID, Databases } from "appwrite";
 
-export class TeacherService {
+export class ReqService {
     client = new Client();
     databases;
 
@@ -13,29 +13,28 @@ export class TeacherService {
         this.databases = new Databases(this.client);
     }
 
-    async createDoc({ title, content, featuredDoc, userId }) {
+    async createReq( title, content, userId ) {
         try {
         return await this.databases.createDocument(
             conf.appwriteDatabseId,
-            conf.appwriteTeacherCollectionId,
+            conf.appwriterRequestCollectionId,
             ID.unique(),
             {
             title,
             content,
-            featuredDoc,
             userId,
             }
         );
         } catch (error) {
-        console.log("Appwrite service :: createDoc :: error", error);
+        console.log("Appwrite service :: createReq :: error", error);
         }
     }
 
-    async updateDoc( id, {title, content, featuredDoc, status}) {
+    async updateReq( id, {title, content, status}) {
         try {
             return await this.databases.updateDocument(
                 conf.appwriteDatabseId,
-                conf.appwriteTeacherCollectionId,
+                conf.appwriterRequestCollectionId,
                 id,
                 {
                     title,
@@ -45,44 +44,44 @@ export class TeacherService {
                 }
             )
         } catch (error) {
-            console.log("Appwrite service :: updateDoc :: error", error);
+            console.log("Appwrite service :: updateReq :: error", error);
         }
     }
 
-    async deleteDoc(id) {
+    async deleteReq(id) {
         try {
         return await this.databases.deleteDocument(
             conf.appwriteDatabseId,
-            conf.appwriteTeacherCollectionId,
+            conf.appwriterRequestCollectionId,
             id
         );
         } catch (error) {
-        throw console.log("Appwrite service :: deleteDoc :: error", error);
+        throw console.log("Appwrite service :: deleteReq:: error", error);
         }
     }
-    async getDoc(id) {
+    async getReq(id) {
         try {
         return await this.databases.getDocument(
             conf.appwriteDatabseId,
-            conf.appwriteTeacherCollectionId,
+            conf.appwriterRequestCollectionId,
             id
         );
         } catch (error) {
-        throw console.log("Appwrite service :: getDoc :: error", error);
+        throw console.log("Appwrite service :: getReq :: error", error);
         }
     }
-    async getDocs() {
+    async getReqs() {
         try {
         return await this.databases.listDocuments(
             conf.appwriteDatabseId,
-            conf.appwriteTeacherCollectionId,
+            conf.appwriterRequestCollectionId,
         );
         } catch (error) {
-        throw console.log("Appwrite service :: getDocs :: error", error);
+        throw console.log("Appwrite service :: getReqs :: error", error);
         }
     }
 }
 
-const tService = new TeacherService();
+const reqService = new ReqService();
 
-export default tService;
+export default reqService;
