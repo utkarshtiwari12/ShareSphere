@@ -54,12 +54,14 @@ const Notes = () => {
             const file = selectedFile ? await fileService.uploadFile(selectedFile) : null;
             console.log(file);
 
-            const docs = await StuService.createDoc(doc.title, doc.content, file.$id, userId);
+            if (file) {
+                const docs = await StuService.createDoc(doc.title, doc.content, file.$id, userId);
             console.log("Doc ADDED SUCCESSFULLY", docs);
             setDoc({
                 title: "",
                 content: "",
             });
+            }
         } catch (error) {
         console.log("ERROR ON ADDING Doc ON FRONT-END", error);
         }

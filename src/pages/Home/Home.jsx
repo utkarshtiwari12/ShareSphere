@@ -4,6 +4,18 @@ import authservice from "@/appwrite/auth";
 import { useDispatch } from "react-redux";
 import { login } from "@/store/authSlice";
 import { Link, useNavigate } from "react-router-dom";
+import StuService from "@/appwrite/stu.config";
+import {
+    Card,
+    CardContent,
+    CardDescription,
+    CardHeader,
+    CardTitle,
+} from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Button } from "@/components/ui/button";
+import note from '@/assets/note.png'
 
 
 function Home() {
@@ -17,6 +29,28 @@ function Home() {
     const navigate = useNavigate();
     const [userId, setUserId] = useState("");
     const [loaderK, setLoaderK] = useState(false);
+    const [finalDocs, setFinalDocs] = useState({});
+    const [downURL, setDownURL] = useState("");
+
+    const handleDelete = async (postId, docId) => {
+        try {
+            await StuService.deleteDoc(postId);
+            await fileService.deleteFile(docId)
+        console.log("Doc DELETED SUCCESSFULLY");
+        } catch (error) {
+        console.log("ERROR ON DELETEING Doc ON FRONT-END", error);
+        }
+    };
+
+    const handleDownload = async (docId) => {
+        try {
+            const downloadedFile = fileService.downloadFile(docId);
+            setDownURL(downloadedFile.href);
+            console.log("Doc Got SUCCESSFULLY");
+        } catch (error) {
+            console.log("ERROR ON DOWNLOADING Doc ON FRONT-END", error);
+        }
+    }
 
 
     const fetchData = useCallback(async () => {
@@ -28,6 +62,15 @@ function Home() {
             dispatch(login(userData));
             setUserId(userData.$id);
             console.log("USER LOGGED IN SUCCESSFULLY");
+            }
+
+            const docData = await StuService.getDocs([]);
+            const filteredDocs = docData.documents.slice(0, 3);
+            
+            if (filteredDocs) {
+                setFinalDocs(filteredDocs);
+            } else {
+                setFinalDocs({});
             }
         
         setLoaderK(false);
@@ -130,13 +173,55 @@ function Home() {
             Get frequent access of <span className="text-[#FC5B3F]">Notes.</span>
         </h1>
 
-        <div className="vision px-8">
-            <div
-            className="cards flex flex-wrap justify-between flex-col md:flex-row gap-10 md:gap-14"
-            >
-                {/* Add Cards */}
+        {loaderK ? (
+            <div className="mt-10 text-center">
+            <div className="loader mx-auto"></div>
             </div>
-        </div>
+        ) :        
+        (<div className="vision px-8">
+            {Object.keys(finalDocs).length ? (
+                <div className="mt-10 flex gap-y-6 justify-center items-center">
+                    <ul className="flex flex-col justify-center flex-wrap lg:flex-row gap-6">
+                        {finalDocs.map((item) => (
+                        <Card className="flex items-center overflow-y-auto shadow-xl pt-6 w-80 min-h-60 max-h-[450px]" key={item.$id}>
+                            <CardContent className="flex w-full items-center justify-between flex-col gap-5">
+                            <div className="flex flex-col items-center justify-between gap-4 w-full">
+                                <div>
+                                    <img src={note} alt="note-logo" width='50px'/>
+                                </div>
+                                <div className="font-semibold">{item.title}</div>
+                                <div className="">
+                                {" "}
+                                <span>{item.content}</span>
+                                </div>
+                                <div className="flex">
+                                    <Button className='hover:bg-[#FC5B3F]'
+                                    onClick={() => handleDownload(item.featuredDoc)}
+                                    >
+                                        <a href={downURL}><span>Download</span></a>
+                                    </Button>
+                                </div>
+                            </div>
+
+                            {(item.userId === userId || userLabel === 'admin') ? <div className="flex items-center gap-8">
+                                <Button
+                                className="flex items-center gap-1 bg-[#FC5B3F] hover:text-white"
+                                onClick={() => handleDelete(item.$id, item.featuredDoc)}
+                                >
+                                <i className="fa-solid fa-trash"></i>
+                                </Button>
+                            </div> : (null) }
+                            </CardContent>
+                        </Card>
+                        ))}
+                    </ul>
+                </div>
+            ) : (
+                <div className="mt-10 flex flex-col gap-y-6">
+                No Data Available. Please Upload Notes.
+                </div>
+            )}
+        </div>)}
     </div>
     
     <footer className="container mx-auto mt-[5%] px-7 md:px-5">
