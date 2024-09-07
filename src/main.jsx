@@ -8,7 +8,7 @@ import {
   createBrowserRouter,
   createRoutesFromElements,
 } from "react-router-dom";
-import { Home, Notes, Requests, Leaderboard, NotesByTeachers, Review, Auth } from "./pages/index.js";
+import { Home, Notes, Requests, Leaderboard, NotesByTeachers, Review, Auth, FulReq } from "./pages/index.js";
 import { Provider } from "react-redux";
 import store from "./store/store.js";
 
@@ -22,6 +22,7 @@ const router = createBrowserRouter(
       <Route path="/notesByTeachers" element={<NotesByTeachers />} />
       <Route path="/reviews" element={<Review />} />
       <Route path="/auth" element={<Auth />} />
+      <Route path="/fulfill-req/:slug" element={<FulReq />} />
     </Route>
   )
 );

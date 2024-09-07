@@ -16,9 +16,10 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import stuService from "@/appwrite/stu.config";
 import fileService from "@/appwrite/fileService";
+import reqService from "@/appwrite/req.config";
 
 
-const Notes = () => {
+const Notes = ({post}) => {
     const [doc, setDoc] = useState({
     title: "",
     content: "",
@@ -32,6 +33,11 @@ const Notes = () => {
     const [length, setLength] = useState(0);
     const [downURL, setDownURL] = useState("");
     const [finalDocs, setFinalDocs] = useState({});
+
+    if (post) {
+        doc.title = post.title;
+        doc.content = post.content;
+    }
 
     const handleChange = (e) => {
     const { name, value } = e.target;
@@ -56,7 +62,15 @@ const Notes = () => {
 
             if (file) {
                 const docs = await stuService.createDoc(doc.title, doc.content, file.$id, userId);
-            console.log("Doc ADDED SUCCESSFULLY", docs);
+                console.log("Doc ADDED SUCCESSFULLY", docs);
+                if (post && docs) {
+                    try {
+                        await reqService.deleteReq(post.$id);
+                        console.log("Request fulfilled SUCCESSFULLY");
+                    } catch (error) {
+                        console.log("ERROR ON deleting req. after fulfilling ON FRONT-END", error);
+                    }
+                }
             setDoc({
                 title: "",
                 content: "",
@@ -210,10 +224,10 @@ const Notes = () => {
                                 <div>
                                     <img src={note} alt="note-logo" width='50px'/>
                                 </div>
-                                <div className="font-semibold">{item.title}</div>
+                                <div className="font-semibold">{item.title.toString()}</div>
                                 <div className="">
                                 {" "}
-                                <span>{item.content}</span>
+                                <span>{item.content.toString()}</span>
                                 </div>
                                 <div className="flex">
                                     <Button className='hover:bg-[#FC5B3F]'

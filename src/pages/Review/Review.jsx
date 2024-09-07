@@ -184,10 +184,10 @@ function Review() {
                                     <Card>
                                         <CardContent className="flex w-full items-center justify-between flex-col gap-5">
                                             <div className="flex flex-col items-center justify-between gap-4 w-full">
-                                                <div className="font-semibold mt-4">{item.title}</div>
+                                                <div className="font-semibold mt-4">{item.title.toString()}</div>
                                                 <div className="">
                                                 {" "}
-                                                <span>{item.content}</span>
+                                                <span>{item.content.toString()}</span>
                                                 </div>
                                             </div>
 

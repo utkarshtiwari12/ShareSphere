@@ -12,7 +12,7 @@ import { Button } from "@/components/ui/button";
 import authservice from "@/appwrite/auth";
 import { login } from "@/store/authSlice";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import reqService from "@/appwrite/req.config";
 
 
@@ -169,11 +169,16 @@ const Requests = () => {
                         <Card className="flex items-center overflow-y-auto shadow-xl pt-6 w-80 min-h-60 max-h-[450px]" key={item.$id}>
                             <CardContent className="flex w-full items-center justify-between flex-col gap-5">
                             <div className="flex flex-col text-center items-center justify-between gap-4 w-full">
-                                <div className="font-semibold">{item.title}</div>
+                                <div className="font-semibold">{item.title.toString()}</div>
                                 <div className="">
                                 {" "}
-                                <span>{item.content}</span>
+                                <span>{item.content.toString()}</span>
                                 </div>
+                                <Link to={`/fulfill-req/${item.$id}`}>
+                                    <Button bgColor="bg-green-500" className="mr-3">
+                                    Fulfill Request
+                                    </Button>
+                                </Link>
                             </div>
 
                             {(item.userId === userId || userLabel === 'admin') ? <div className="flex items-center gap-8">

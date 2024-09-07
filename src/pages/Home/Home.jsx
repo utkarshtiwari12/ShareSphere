@@ -145,7 +145,7 @@ function Home() {
             <p
                 className="text-black md:text-4xl mb-10 md:mb-[78px] text-3xl max-w-[70%]"
             >
-                Now you can help others and get rewarded every week.
+                Now you can help others with the docs you have and get rewarded for it.
             </p>
 
             <div className="flex flex-col gap-4">
