@@ -13,7 +13,7 @@ export class TeacherService {
         this.databases = new Databases(this.client);
     }
 
-    async createDoc({ title, content, featuredDoc, userId }) {
+    async createDoc( title, content, featuredDoc, userId ) {
         try {
         return await this.databases.createDocument(
             conf.appwriteDatabseId,
