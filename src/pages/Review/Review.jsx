@@ -112,12 +112,12 @@ function Review() {
     }, [fetchUser]);
 
     return (
-        <div className="lg:px-[4rem] px-5 pt-10 py-[1rem] font-poppins flex flex-col justify-center items-center">
+        <div className="lg:px-[4rem] px-5 pt-10 py-[1rem] min-h-screen font-poppins flex flex-col justify-center items-center bg-gradient-to-br from-[#F1F9FB] to-[#D5F2F8]">
 
         <div className="w-full mb-8 lg:mb-16">
             <Card className='shadow-lg'>
             <CardHeader>
-            <CardTitle className='text-[#FC5B3F]'>Add Reviews</CardTitle>
+            <CardTitle className='text-[#024F55]'>Add Reviews</CardTitle>
             <CardDescription>
                 Add your Reviews about the platform and we'll try our best to work on them.
             </CardDescription>
@@ -156,9 +156,9 @@ function Review() {
                 <div className="flex flex-col gap-2 justify-end">
                     <Button
                     type="submit"
-                    className="flex items-center gap-1 mt-3 lg:mt-0 hover:bg-[#FC5B3F] hover:text-white"
+                    className="flex items-center gap-1 mt-3 lg:mt-0 hover:bg-[#024F55] hover:text-white"
                     >
-                    Upload
+                    Add Review
                     </Button>
                 </div>
                 </div>
@@ -193,7 +193,7 @@ function Review() {
 
                                             {(item.userId === userId || userLabel === 'admin') ? <div className="flex items-center gap-8">
                                                 <Button
-                                                className="flex items-center gap-1 bg-[#FC5B3F] hover:text-white"
+                                                className="flex items-center gap-1 bg-[#024F55] hover:text-white"
                                                 onClick={() => handleDelete(item.$id)}
                                                 >
                                                 <i className="fa-solid fa-trash"></i>
@@ -205,8 +205,8 @@ function Review() {
                                 </CarouselItem>
                                 ))}
                             </CarouselContent>
-                            <CarouselPrevious className='text-[#FC5B3F]'/>
-                            <CarouselNext className='text-[#FC5B3F]'/>
+                            <CarouselPrevious className='text-[#024F55]'/>
+                            <CarouselNext className='text-[#024F55]'/>
                         </Carousel>
                             ) :
                             (

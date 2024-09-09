@@ -100,20 +100,20 @@ const Requests = () => {
     }, [fetchUser]);
 
     return (
-        <div className="lg:px-[4rem] px-5 pt-10 py-[1rem] font-poppins">
+        <div className="lg:px-[4rem] px-5 pt-10 py-[1rem] min-h-screen font-poppins bg-gradient-to-br from-[#F1F9FB] to-[#D5F2F8]">
         {/* add req. section  */}
         <Card className='shadow-lg'>
             <CardHeader>
-            <CardTitle className='text-[#FC5B3F]'>Add Requests</CardTitle>
+            <CardTitle className='text-[#024F55]'>Requests Notes</CardTitle>
             <CardDescription>
-                Add your Requests in a single click.
+                Send Notes Requests in a single click.
             </CardDescription>
             </CardHeader>
             <form action="" method="post" onSubmit={handleSubmit}>
             <CardContent>
                 <div className="grid lg:grid-cols-3 gap-5 lg:gap-[3rem]">
                 <div className="">
-                    <Label htmlFor="title">Title</Label>
+                    <Label htmlFor="title">Note Title</Label>
                     <Input
                     type="text"
                     id="title"
@@ -127,7 +127,7 @@ const Requests = () => {
                 </div>
 
                 <div className="">
-                    <Label htmlFor="content">Content</Label>
+                    <Label htmlFor="content">Note Content</Label>
                     <Input
                     type="text"
                     id="content"
@@ -143,9 +143,9 @@ const Requests = () => {
                 <div className="flex flex-col gap-2 justify-end">
                     <Button
                     type="submit"
-                    className="flex items-center gap-1 mt-3 lg:mt-0 hover:bg-[#FC5B3F] hover:text-white"
+                    className="flex items-center gap-1 mt-3 lg:mt-0 hover:bg-[#024F55] hover:text-white"
                     >
-                    Upload
+                    Send Request
                     </Button>
                 </div>
                 </div>
@@ -160,7 +160,7 @@ const Requests = () => {
             </div>
         ) : (
             <div className="mt-10">
-            <h2 className="text-xl font-semibold text-[#FC5B3F]">All Requests ({length})</h2>
+            <h2 className="text-xl font-semibold text-[#024F55]">All Requests ({length})</h2>
 
             {Object.keys(finalDocs).length ? (
                 <div className="mt-10 flex gap-y-6 justify-center items-center">
@@ -175,7 +175,7 @@ const Requests = () => {
                                 <span>{item.content.toString()}</span>
                                 </div>
                                 <Link to={`/fulfill-req/${item.$id}`}>
-                                    <Button className="mr-3 hover:bg-[#FC5B3F]">
+                                    <Button className="mr-3 hover:bg-[#024F55]">
                                     Fulfill Request
                                     </Button>
                                 </Link>
@@ -183,7 +183,7 @@ const Requests = () => {
 
                             {(item.userId === userId || userLabel === 'admin') ? <div className="flex items-center gap-8">
                                 <Button
-                                className="flex items-center gap-1 bg-[#FC5B3F] hover:text-white"
+                                className="flex items-center gap-1 bg-[#024F55] hover:text-white"
                                 onClick={() => handleDelete(item.$id)}
                                 >
                                 <i className="fa-solid fa-trash"></i>

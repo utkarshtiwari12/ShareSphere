@@ -139,11 +139,11 @@ const Notes = ({post}) => {
     }, [fetchUser]);
 
     return (
-        <div className="lg:px-[4rem] px-5 pt-10 py-[1rem] font-poppins">
+        <div className="lg:px-[4rem] px-5 pt-10 py-[1rem] font-poppins bg-gradient-to-br from-[#F1F9FB] to-[#D5F2F8] min-h-screen">
         {/* add doc section  */}
         <Card className='shadow-lg'>
             <CardHeader>
-            <CardTitle className='text-[#FC5B3F]'>Add Notes</CardTitle>
+            <CardTitle className='text-[#024F55]'>Add Notes</CardTitle>
             <CardDescription>
                 Add your Notes in a single click.
             </CardDescription>
@@ -152,7 +152,7 @@ const Notes = ({post}) => {
             <CardContent>
                 <div className="grid lg:grid-cols-4 gap-5 lg:gap-[3rem]">
                 <div className="">
-                    <Label htmlFor="title">Title</Label>
+                    <Label htmlFor="title">Note Title</Label>
                     <Input
                     type="text"
                     id="title"
@@ -166,7 +166,7 @@ const Notes = ({post}) => {
                 </div>
 
                 <div className="">
-                    <Label htmlFor="content">Content</Label>
+                    <Label htmlFor="content">Note Content</Label>
                     <Input
                     type="text"
                     id="content"
@@ -179,12 +179,11 @@ const Notes = ({post}) => {
                     />
                 </div>
                 <div className="">
-                    <Label htmlFor="featuredDoc">Doc</Label>
+                    <Label htmlFor="featuredDoc">Featured Note</Label>
                     <Input
                     type="file"
                     id="featuredDoc"
                     name="featuredDoc"
-                    placeholder="Doc"
                     className="capitalize"
                     onChange={handleDoc}
                     accept="image/png, image/jpg, application/pdf"
@@ -195,9 +194,9 @@ const Notes = ({post}) => {
                 <div className="flex flex-col gap-2 justify-end">
                     <Button
                     type="submit"
-                    className="flex items-center gap-1 mt-3 lg:mt-0 hover:bg-[#FC5B3F] hover:text-white"
+                    className="flex items-center gap-1 mt-3 lg:mt-0 hover:bg-[#024F55] hover:text-white"
                     >
-                    Upload
+                    Upload Note
                     </Button>
                 </div>
                 </div>
@@ -212,7 +211,7 @@ const Notes = ({post}) => {
             </div>
         ) : (
             <div className="mt-10">
-            <h2 className="text-xl font-semibold text-[#FC5B3F]">All Notes ({length})</h2>
+            <h2 className="text-xl font-semibold text-[#024F55]">All Notes ({length})</h2>
 
             {Object.keys(finalDocs).length ? (
                 <div className="mt-10 flex gap-y-6 justify-center items-center">
@@ -222,7 +221,7 @@ const Notes = ({post}) => {
                             <CardContent className="flex w-full items-center justify-between flex-col gap-5">
                             <div className="flex flex-col items-center justify-between gap-4 w-full">
                                 <div>
-                                    <img src={note} alt="note-logo" width='50px'/>
+                                    <img src={note} alt="note-logo" width='50px' className='rounded-sm'/>
                                 </div>
                                 <div className="font-semibold">{item.title.toString()}</div>
                                 <div className="">
@@ -230,7 +229,7 @@ const Notes = ({post}) => {
                                 <span>{item.content.toString()}</span>
                                 </div>
                                 <div className="flex">
-                                    <Button className='hover:bg-[#FC5B3F]'
+                                    <Button className='hover:bg-[#024F55]'
                                     onClick={() => handleDownload(item.featuredDoc)}
                                     >
                                         <a href={downURL}><span>Download</span></a>
@@ -240,7 +239,7 @@ const Notes = ({post}) => {
 
                             {(item.userId === userId || userLabel === 'admin') ? <div className="flex items-center gap-8">
                                 <Button
-                                className="flex items-center gap-1 bg-[#FC5B3F] hover:text-white"
+                                className="flex items-center gap-1 bg-[#024F55] hover:text-white"
                                 onClick={() => handleDelete(item.$id, item.featuredDoc)}
                                 >
                                 <i className="fa-solid fa-trash"></i>

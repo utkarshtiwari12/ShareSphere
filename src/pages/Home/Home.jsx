@@ -87,17 +87,15 @@ function Home() {
 
     return (
     <>
+    <div className='bg-gradient-to-br from-[#F1F9FB] to-[#D5F2F8]'>
         <div className="w-screen h-[90vh] px-2 md:px-6 py-4 md:py-6 md:flex">
                 <div className="w-full md:w-1/2 md:flex justify-center flex-col md:ml-12 px-4">
                     {username ? (<h1 className='typed-out md:text-4xl font-semibold pb-6 text-2xl'>Hello {username},</h1>) : (null)}
                 <h1 className="text-black md:text-8xl font-semibold mb-10 text-6xl">
-                    <span className="text-[#FC5B3F]">Welcome</span> to ShareSphere community...
+                    <span className="text-[#024F55]">Welcome</span> to ShareSphere community...
                 </h1>
-                <p className="text-gray-600 font-semibold md:text-lg">
-                    A platform where students can interact,
-                </p>
-                <p className="text-gray-600 font-semibold md:text-lg">
-                    share &amp; gain.
+                <p className="text-gray-600 font-semibold md:text-xl">
+                    A platform where students can interact, share &amp; gain.
                 </p>
                 </div>
 
@@ -110,15 +108,15 @@ function Home() {
         <div className="w-screen md:h-[75vh] px-2 md:px-6 py-4 md:py-6">
         <div className="w-full h-[35%] text-center">
             <h1
-            className="text-black md:text-7xl font-semibold mb-10 text-5xl max-w-[80%]"
+            className="text-black md:text-7xl font-semibold mb-10 text-5xl max-w-[95%]"
             >
-            College <span className="text-[#FC5B3F]">Resources</span> are now on your
+            College <span className="text-[#024F55]">Resources</span> are now on your
             Fingertips...
             </h1>
         </div>
 
         <div className="w-full h-[65%] md:flex">
-            <div className="md:w-1/2 md:h-full ml-20 pb-12">
+            <div className="md:w-1/2 md:h-full ml-12 lg:ml-36 pb-12">
             <p className="text-black md:text-4xl mb-10 text-3xl max-w-[70%]">
                 Interact with your batchmates through this platform and get required
                 Resources.
@@ -127,38 +125,38 @@ function Home() {
             <div className="flex flex-col gap-4">
                 <Link to={'/notes'}>
                     <button
-                        className="text-[#FC5B3F] font-semibold bg-white w-80 py-[6px] px-4 rounded border-2 border-[#FC5B3F]"
+                        className="text-[#024F55] font-semibold bg-white w-80 py-[6px] px-4 rounded border-2 border-[#024F55]"
                         >
                         Get Notes
                     </button>
                 </Link>
                 <Link to={'/requests'}>
                     <button
-                className="text-white font-semibold bg-[#FC5B3F] w-80 py-[6px] px-4 rounded border-2 border-[#FC5B3F] animate-pulse -z-10"
+                className="text-white font-semibold bg-[#024F55] w-80 py-[6px] px-4 rounded border-2 border-[#024F55] animate-pulse -z-10"
                 >
                 Make a Request
                 </button>
                 </Link>
             </div>
             </div>
-            <div className="md:w-1/2 md:h-full ml-20 pb-12">
+            <div className="md:w-1/2 md:h-full ml-12 lg:ml-36 pb-12">
             <p
                 className="text-black md:text-4xl mb-10 md:mb-[78px] text-3xl max-w-[70%]"
             >
-                Now you can help others with the docs you have and get rewarded for it.
+                Now you can help others and get rewarded for it.
             </p>
 
             <div className="flex flex-col gap-4">
                 <Link to={'/notes'}>
                     <button
-                        className="text-[#FC5B3F] font-semibold bg-white w-80 py-[6px] px-4 rounded border-2 border-[#FC5B3F]"
+                        className="text-[#024F55] font-semibold bg-white w-80 py-[6px] px-4 rounded border-2 border-[#024F55]"
                         >
                         Upload MyDocs
                     </button>
                 </Link>
                 <Link to={'/requests'}>
                     <button
-                className="text-white font-semibold bg-[#FC5B3F] w-80 py-[6px] px-4 rounded border-2 border-[#FC5B3F] animate-pulse -z-10"
+                className="text-white font-semibold bg-[#024F55] w-80 py-[6px] px-4 rounded border-2 border-[#024F55] animate-pulse -z-10"
                 >
                 Fulfill Requests
                 </button>
@@ -170,8 +168,8 @@ function Home() {
             
 
     <div className="w-screen px-10 md:px-20 py-4 md:py-10">
-        <h1 className="font-bold mb-7 md:mb-20 text-4xl md:text-5xl">
-            Get frequent access of <span className="text-[#FC5B3F]">Notes.</span>
+        <h1 className="font-bold mb-7 px-10 text-center md:mb-20 text-4xl md:text-5xl">
+            Get frequent access of <span className="text-[#024F55]">Notes.</span>
         </h1>
 
         {loaderK ? (
@@ -188,7 +186,7 @@ function Home() {
                             <CardContent className="flex w-full items-center justify-between flex-col gap-5">
                             <div className="flex flex-col items-center justify-between gap-4 w-full">
                                 <div>
-                                    <img src={note} alt="note-logo" width='50px'/>
+                                    <img src={note} alt="note-logo" width='50px' className='rounded-sm'/>
                                 </div>
                                 <div className="font-semibold">{item.title}</div>
                                 <div className="">
@@ -196,7 +194,7 @@ function Home() {
                                 <span>{item.content}</span>
                                 </div>
                                 <div className="flex">
-                                    <Button className='hover:bg-[#FC5B3F]'
+                                    <Button className='bg-[#024F55] hover:bg-[#3C949E]'
                                     onClick={() => handleDownload(item.featuredDoc)}
                                     >
                                         <a href={downURL}><span>Download</span></a>
@@ -206,7 +204,7 @@ function Home() {
 
                             {(item.userId === userId || userLabel === 'admin') ? <div className="flex items-center gap-8">
                                 <Button
-                                className="flex items-center gap-1 bg-[#FC5B3F] hover:text-white"
+                                className="flex items-center gap-1 bg-[#024F55] hover:bg-[#3C949E]"
                                 onClick={() => handleDelete(item.$id, item.featuredDoc)}
                                 >
                                 <i className="fa-solid fa-trash"></i>
@@ -232,7 +230,7 @@ function Home() {
             >
             <Link to={'/'}>
                 <div className="logo">
-                <h1 className="text-[#FC5B3F] font-bold text-3xl mx-10">ShareSphere</h1>
+                <h1 className="text-[#024F55] font-bold text-3xl mx-10">ShareSphere</h1>
             </div>
             </Link>
             <div className="copyright text-lg font-semibold">
@@ -243,16 +241,16 @@ function Home() {
             <ul
                 className="mt-5 md:mt-0 flex gap-x-3 gap-y-2 md:gap-6 flex-wrap md:flex-nowrap justify-center md:justify-end"
             >
-                <Link to={'/requests'} className='hover:border-b-2 hover:border-[#FC5B3F]'>
+                <Link to={'/requests'} className='hover:border-b-2 hover:border-[#024F55]'>
                     <li>Requests</li>
                 </Link>
-                <Link to={'/leaderboard'} className='hover:border-b-2 hover:border-[#FC5B3F]'>
+                <Link to={'/leaderboard'} className='hover:border-b-2 hover:border-[#024F55]'>
                     <li>LeaderBoard</li>
                 </Link>
-                <Link to={'/notesByTeachers'} className='hover:border-b-2 hover:border-[#FC5B3F]'>
+                <Link to={'/notesByTeachers'} className='hover:border-b-2 hover:border-[#024F55]'>
                     <li>NotesByTeachers</li>
                 </Link>
-                <Link to={whatsappUrl} className='hover:border-b-2 hover:border-[#FC5B3F] text-green-500'>
+                <Link to={whatsappUrl} className='hover:border-b-2 hover:border-[#024F55] text-green-600'>
                     <li>Whatsapp Us</li>
                 </Link>
             </ul>
@@ -263,7 +261,7 @@ function Home() {
             ShareSphere - A notes sharing platform where students can interact, share & gain.
         </div>
         </footer>
-
+    </div>
     </>
     );
 }
