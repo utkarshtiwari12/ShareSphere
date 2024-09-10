@@ -9,7 +9,6 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
-import note from '@/assets/note.png'
 import authservice from "@/appwrite/auth";
 import { login } from "@/store/authSlice";
 import { useDispatch } from "react-redux";

@@ -10,7 +10,7 @@ import {
     CardContent,
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import note from '@/assets/note.png'
+import note from '@/assets/sticky-notes.png'
 import fileService from "@/appwrite/fileService";
 
 
@@ -116,7 +116,7 @@ function Home() {
         </div>
 
         <div className="w-full h-[65%] md:flex">
-            <div className="md:w-1/2 md:h-full ml-12 lg:ml-36 pb-12">
+            <div className="md:w-1/2 md:h-full ml-20 lg:ml-36 pb-12">
             <p className="text-black md:text-4xl mb-10 text-3xl max-w-[70%]">
                 Interact with your batchmates through this platform and get required
                 Resources.
@@ -139,7 +139,7 @@ function Home() {
                 </Link>
             </div>
             </div>
-            <div className="md:w-1/2 md:h-full ml-12 lg:ml-36 pb-12">
+            <div className="md:w-1/2 md:h-full ml-20 lg:ml-36 pb-12">
             <p
                 className="text-black md:text-4xl mb-10 md:mb-[78px] text-3xl max-w-[70%]"
             >
@@ -194,7 +194,7 @@ function Home() {
                                 <span>{item.content}</span>
                                 </div>
                                 <div className="flex">
-                                    <Button className='bg-[#024F55] hover:bg-[#3C949E]'
+                                    <Button className='bg-[#3C949E] hover:bg-[#024F55]'
                                     onClick={() => handleDownload(item.featuredDoc)}
                                     >
                                         <a href={downURL}><span>Download</span></a>
@@ -204,7 +204,7 @@ function Home() {
 
                             {(item.userId === userId || userLabel === 'admin') ? <div className="flex items-center gap-8">
                                 <Button
-                                className="flex items-center gap-1 bg-[#024F55] hover:bg-[#3C949E]"
+                                className="flex items-center gap-1 bg-[#3C949E] hover:bg-[#024F55]"
                                 onClick={() => handleDelete(item.$id, item.featuredDoc)}
                                 >
                                 <i className="fa-solid fa-trash"></i>
@@ -223,7 +223,7 @@ function Home() {
         </div>)}
     </div>
     
-    <footer className="container mx-auto mt-[5%] px-7 md:px-5">
+    <footer className="w-full mx-auto mt-[5%] px-7 py-2 md:px-5 bg-gradient-to-r from-[#D5F2F8] to-[#9BD8DB]">
         <div className="up flex justify-between pb-3 flex-col md:flex-row">
             <div
             className="left flex gap-5 md:gap-0 items-center flex-col md:flex-row justify-center md:justify-start"

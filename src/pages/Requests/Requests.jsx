@@ -143,7 +143,7 @@ const Requests = () => {
                 <div className="flex flex-col gap-2 justify-end">
                     <Button
                     type="submit"
-                    className="flex items-center gap-1 mt-3 lg:mt-0 hover:bg-[#024F55] hover:text-white"
+                    className="flex items-center gap-1 mt-3 lg:mt-0 bg-[#3C949E] hover:bg-[#024F55]"
                     >
                     Send Request
                     </Button>
@@ -175,7 +175,7 @@ const Requests = () => {
                                 <span>{item.content.toString()}</span>
                                 </div>
                                 <Link to={`/fulfill-req/${item.$id}`}>
-                                    <Button className="mr-3 hover:bg-[#024F55]">
+                                    <Button className="mr-3 bg-[#3C949E] hover:bg-[#024F55]">
                                     Fulfill Request
                                     </Button>
                                 </Link>
@@ -183,7 +183,7 @@ const Requests = () => {
 
                             {(item.userId === userId || userLabel === 'admin') ? <div className="flex items-center gap-8">
                                 <Button
-                                className="flex items-center gap-1 bg-[#024F55] hover:text-white"
+                                className="flex items-center gap-1 bg-[#3C949E] hover:bg-[#024F55]"
                                 onClick={() => handleDelete(item.$id)}
                                 >
                                 <i className="fa-solid fa-trash"></i>

@@ -9,7 +9,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
-import note from '@/assets/note.png'
+import note from '@/assets/sticky-notes.png'
 import authservice from "@/appwrite/auth";
 import { login } from "@/store/authSlice";
 import { useDispatch } from "react-redux";
@@ -194,7 +194,7 @@ const Notes = ({post}) => {
                 <div className="flex flex-col gap-2 justify-end">
                     <Button
                     type="submit"
-                    className="flex items-center gap-1 mt-3 lg:mt-0 hover:bg-[#024F55] hover:text-white"
+                    className="flex items-center gap-1 mt-3 lg:mt-0 bg-[#3C949E] hover:bg-[#024F55]"
                     >
                     Upload Note
                     </Button>
@@ -229,7 +229,7 @@ const Notes = ({post}) => {
                                 <span>{item.content.toString()}</span>
                                 </div>
                                 <div className="flex">
-                                    <Button className='hover:bg-[#024F55]'
+                                    <Button className='bg-[#3C949E] hover:bg-[#024F55]'
                                     onClick={() => handleDownload(item.featuredDoc)}
                                     >
                                         <a href={downURL}><span>Download</span></a>
@@ -239,7 +239,7 @@ const Notes = ({post}) => {
 
                             {(item.userId === userId || userLabel === 'admin') ? <div className="flex items-center gap-8">
                                 <Button
-                                className="flex items-center gap-1 bg-[#024F55] hover:text-white"
+                                className="flex items-center gap-1 bg-[#3C949E] hover:bg-[#024F55]"
                                 onClick={() => handleDelete(item.$id, item.featuredDoc)}
                                 >
                                 <i className="fa-solid fa-trash"></i>
