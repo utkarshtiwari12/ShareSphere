@@ -125,7 +125,7 @@ function Navbar() {
             </div>
         </div>
 
-        <div className="relative font-poppins w-full pt-4 bg-transparent lg:hidden">
+        <div className="relative font-poppins w-full pt-4 bg-transparent lg:hidden pb-2">
             <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-2 sm:px-6 lg:px-8">
             <div className="inline-flex items-center space-x-2">
                 <Link to={"/"} className="text-[#024F55] hover:text-black">
