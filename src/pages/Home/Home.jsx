@@ -122,7 +122,7 @@ function Home() {
                 Resources.
             </p>
 
-            <div className="flex -ml-16 lg:ml-0 flex-col gap-4">
+            <div className="flex -ml-14 lg:ml-0 flex-col gap-4">
                 <Link to={'/notes'}>
                     <button
                         className="text-[#024F55] font-semibold bg-white w-80 py-[6px] px-4 rounded border-2 border-[#024F55]"
@@ -146,7 +146,7 @@ function Home() {
                 Now you can help others and get rewarded for it.
             </p>
 
-            <div className="flex flex-col -ml-16 lg:ml-0 gap-4">
+            <div className="flex flex-col -ml-14 lg:ml-0 gap-4">
                 <Link to={'/notes'}>
                     <button
                         className="text-[#024F55] font-semibold bg-white w-80 py-[6px] px-4 rounded border-2 border-[#024F55]"
