@@ -8,7 +8,7 @@ import StuService from "@/appwrite/stu.config";
 import {
     Card,
     CardContent,
-} from "@/components/ui/card";
+} from "@/components/ui/Card";
 import { Button } from "@/components/ui/button";
 import note from '@/assets/sticky-notes.png'
 import fileService from "@/appwrite/fileService";

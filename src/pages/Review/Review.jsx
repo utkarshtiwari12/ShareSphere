@@ -5,7 +5,7 @@ import {
     CardDescription,
     CardHeader,
     CardTitle,
-} from "@/components/ui/card";
+} from "@/components/ui/Card";
 import {
     Carousel,
     CarouselContent,
