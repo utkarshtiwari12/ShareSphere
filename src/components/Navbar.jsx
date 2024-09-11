@@ -176,7 +176,7 @@ function Navbar() {
                     </div>
                     <button
                         type="button"
-                        className="mt-4 w-full rounded-md bg-black px-3 py-2 text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black hover:bg-[#024F55] hover:text-white"
+                        className="mt-4 w-full rounded-md px-3 py-2 text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black bg-[#3C949E] hover:bg-[#024F55]"
                         onClick={() => {
                         handleLogout();
                         toggleMenu();
