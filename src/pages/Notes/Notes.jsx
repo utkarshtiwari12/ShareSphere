@@ -32,6 +32,7 @@ const Notes = ({post}) => {
     const navigate = useNavigate();
     const [length, setLength] = useState(0);
     const [downURL, setDownURL] = useState("");
+    const [viewURL, setViewURL] = useState("");
     const [finalDocs, setFinalDocs] = useState({});
 
     if (post) {
@@ -98,6 +99,15 @@ const Notes = ({post}) => {
             console.log("Doc Got SUCCESSFULLY");
         } catch (error) {
             console.log("ERROR ON DOWNLOADING Doc ON FRONT-END", error);
+        }
+    }
+
+    const handlePreview = async (docId) => {
+        try {
+            const preview = fileService.getFilePreview(docId);
+            setViewURL(preview.href);
+        } catch (error) {
+            console.log("ERROR ON Previewing Doc ON FRONT-END", error);
         }
     }
 
@@ -228,23 +238,29 @@ const Notes = ({post}) => {
                                 {" "}
                                 <span>{item.content.toString()}</span>
                                 </div>
-                                <div className="flex">
+                                <div className="flex gap-4">
+                                    <Button className='bg-[#3C949E] hover:bg-[#024F55]'
+                                    onClick={() => handlePreview(item.featuredDoc)}
+                                    >
+                                        <a href={viewURL} target='blank'><span>View</span></a>
+                                    </Button>
+                                    
+                                    {(item.userId === userId || userLabel === 'admin') ? <div className="flex items-center gap-8">
+                                    <Button
+                                    className="flex items-center gap-1 bg-[#3C949E] hover:bg-[#024F55]"
+                                    onClick={() => handleDelete(item.$id, item.featuredDoc)}
+                                    >
+                                    <i className="fa-solid fa-trash"></i>
+                                    </Button>
+                                    </div> : (null)}
+                                </div>
+                                
                                     <Button className='bg-[#3C949E] hover:bg-[#024F55]'
                                     onClick={() => handleDownload(item.featuredDoc)}
                                     >
                                         <a href={downURL}><span>Download</span></a>
                                     </Button>
-                                </div>
                             </div>
-
-                            {(item.userId === userId || userLabel === 'admin') ? <div className="flex items-center gap-8">
-                                <Button
-                                className="flex items-center gap-1 bg-[#3C949E] hover:bg-[#024F55]"
-                                onClick={() => handleDelete(item.$id, item.featuredDoc)}
-                                >
-                                <i className="fa-solid fa-trash"></i>
-                                </Button>
-                            </div> : (null) }
                             </CardContent>
                         </Card>
                         ))}

@@ -36,7 +36,7 @@ export class FileService {
     }
 
     getFilePreview(fileID) {
-        return this.bucket.getFilePreview(conf.appwriteBucketId, fileID);
+        return this.bucket.getFileView(conf.appwriteBucketId, fileID);
     }
 
     downloadFile(fileId) {
