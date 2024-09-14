@@ -15,6 +15,7 @@ const conf = {
         import.meta.env.VITE_APPWRITE_REQUEST_COLLECTION_ID
     ),
     appwriteBucketId: String(import.meta.env.VITE_APPWRITE_BUCKET_ID),
+    appwriteApiKey: String(import.meta.env.VITE_APPWRITE_API_KEY),
 };
 
 export default conf;

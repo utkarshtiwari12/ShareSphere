@@ -17,6 +17,8 @@ import stuService from "@/appwrite/stu.config";
 import fileService from "@/appwrite/fileService";
 import reqService from "@/appwrite/req.config";
 
+import userService from "@/appwrite/users";
+
 const groupDocsByUserId = (docs) => {
     return docs.reduce((groupedDocs, doc) => {
         const user = doc.userId;
@@ -61,6 +63,10 @@ function Leaderboard() {
             const groupedDocs = groupDocsByUserId(filteredDocs);
 
             console.log(groupedDocs);
+
+            const allUsers = userService.getUsers();
+            allUsers.then((res) =>{console.log(res.users);
+            })
             
             
             if (filteredDocs) {
