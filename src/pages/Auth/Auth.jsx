@@ -1,4 +1,5 @@
 import React from "react";
+import hero from "@/assets/login-illustration.jpg"
 import authservice from "@/appwrite/auth";
 
 function Auth() {
@@ -7,19 +8,28 @@ function Auth() {
     };
 
     return (
-        <div className="lg:px-[4rem] px-5 pt-10 py-[1rem] flex flex-col justify-center font-poppins bg-gradient-to-br from-[#F1F9FB] to-[#D5F2F8] min-h-screen">
-        <h1 className="lg:text-7xl text-5xl font-semibold text-center pt-24 pb-20 lg:leading-[5.3rem] leading-[3.5rem]">
+        <div className="w-screen px-2 md:px-6 py-4 md:py-6 md:flex">
+
+            <img
+                className="w-full md:w-1/2 p-10"
+                src={hero}
+                alt="main-img"
+            />
+
+        <div className="w-full md:w-1/2 md:flex justify-center flex-col md:ml-12 px-4 pb-10">
+        <h1 className="lg:text-7xl text-5xl font-semibold text-center py-14 lg:py-20 lg:leading-[5.3rem] leading-[3.5rem]">
             Get your Free Account and continue using <span className="text-[#024F55]">ShareSphere.</span>
         </h1>
         <button
             onClick={loginWithGoogleAuth}
-            className="bg-gradient-to-br from-[#9BD8DB] to-[#024F55] px-5 py-3 rounded-lg capitalize font-semibold text-white text-lg flex gap-3 mx-auto lg:w-[20%]"
+            className="bg-gradient-to-br from-[#9BD8DB] to-[#024F55] px-5 py-3 rounded-lg capitalize font-semibold text-white text-lg flex gap-3 mx-auto"
         >
             <span>Login with Google</span>
             <span>
             <i className="fa-brands fa-google"></i>
             </span>
         </button>
+        </div>
         </div>
     );
 }

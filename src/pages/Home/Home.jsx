@@ -115,8 +115,8 @@ function Home() {
                 alt="main-img"
             />
             </div>
-        <div className="w-screen md:h-[75vh] px-2 md:px-6 py-4 md:py-6">
-        <div className="w-full h-[35%] text-center">
+        <div className="w-screen px-2 md:px-6 py-4 md:py-6">
+        <div className="w-full text-center">
             <h1
             className="text-black md:text-7xl font-semibold mb-10 text-5xl max-w-[95%]"
             >
@@ -124,15 +124,16 @@ function Home() {
             Fingertips...
             </h1>
         </div>
-
-        <div className="w-full h-[65%] md:flex">
-            <div className="md:w-1/2 md:h-full ml-20 lg:ml-36 pb-12">
-            <p className="text-black md:text-4xl mb-10 text-3xl max-w-[70%]">
+        </div>
+        
+        <div className="w-screen px-2 md:px-6 pb-14 flex flex-col md:flex-row gap-20 lg:gap-40">
+            <div className="w-full md:w-1/2 md:flex justify-center text-center flex-col">
+                <p className="text-black md:text-4xl mb-10 text-3xl px-14 lg:px-20">
                 Interact with your batchmates through this platform and get required
                 Resources.
-            </p>
+                </p>
 
-            <div className="flex -ml-14 lg:ml-0 flex-col gap-4">
+            <div className="flex flex-col gap-4">
                 <Link to={'/notes'}>
                     <button
                         className="text-[#024F55] font-semibold bg-white w-80 py-[6px] px-4 rounded border-2 border-[#024F55]"
@@ -149,14 +150,14 @@ function Home() {
                 </Link>
             </div>
             </div>
-            <div className="md:w-1/2 md:h-full ml-20 lg:ml-36 pb-12">
-            <p
-                className="text-black md:text-4xl mb-10 md:mb-[78px] text-3xl max-w-[70%]"
-            >
-                Now you can help others and get rewarded for it.
-            </p>
+            <div className="w-full md:w-1/2 md:flex flex-col justify-center text-center">
+                <p
+                className="text-black md:text-4xl mb-10 text-3xl px-14 lg:px-20"
+                >
+                    Now you can help others and get rewarded for it.
+                </p>
 
-            <div className="flex flex-col -ml-14 lg:ml-0 gap-4">
+            <div className="flex flex-col gap-4">
                 <Link to={'/notes'}>
                     <button
                         className="text-[#024F55] font-semibold bg-white w-80 py-[6px] px-4 rounded border-2 border-[#024F55]"
@@ -173,7 +174,6 @@ function Home() {
                 </Link>
             </div>
             </div>
-        </div>
         </div>
             
 
