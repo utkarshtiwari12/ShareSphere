@@ -86,7 +86,6 @@ function Home() {
         setLoaderK(false);
         } catch (error) {
         console.log("USER IS NOT LOGGED IN", error);
-        navigate("/auth");
         }
     }, [dispatch, navigate, userId]);
 

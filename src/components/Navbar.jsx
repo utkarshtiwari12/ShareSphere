@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useCallback, useEffect, useState} from "react";
 import {
     Menubar,
     MenubarContent,
@@ -53,6 +53,27 @@ const menuItems = [
 function Navbar() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const [userId, setUserId] = useState("");
+
+    const fetchData = useCallback(async () => {
+        try {
+        const userData = await authservice.getCurrentAccount();
+            if (userData)
+            {
+            setUserId(userData.$id);
+            dispatch(login(userData));
+            console.log("USER LOGGED IN SUCCESSFULLY");
+            }
+        
+        } catch (error) {
+        console.log("USER IS NOT LOGGED IN", error);
+        }
+    }, [dispatch]);
+
+    useEffect(() => {
+        fetchData();
+    }, [fetchData]);
+
 
     const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
@@ -64,6 +85,11 @@ function Navbar() {
         dispatch(logout());
         await authservice.logoutAccount();
         navigate("/auth");
+        setUserId("")
+    };
+
+    const loginWithGoogleAuth = async () => {
+        await authservice.loginWithGoogle();
     };
 
     return (
@@ -117,10 +143,14 @@ function Navbar() {
                     </Link>
                 </MenubarContent>
                 </MenubarMenu>
-
-                <MenubarMenu>
+                
+                {userId ? (<MenubarMenu>
                 <MenubarTrigger onClick={handleLogout} className='text-red-500'>LogOut</MenubarTrigger>
-                </MenubarMenu>
+                </MenubarMenu>) : (<MenubarMenu>
+                <MenubarTrigger onClick={loginWithGoogleAuth} className='text-blue-700'>LogIn</MenubarTrigger>
+                </MenubarMenu>)}
+
+                
             </Menubar>
             </div>
         </div>
@@ -174,7 +204,7 @@ function Navbar() {
                         ))}
                         </nav>
                     </div>
-                    <button
+                    {userId ? (<button
                         type="button"
                         className="mt-4 w-full rounded-md px-3 py-2 text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black bg-[#3C949E] hover:bg-[#024F55]"
                         onClick={() => {
@@ -183,7 +213,16 @@ function Navbar() {
                         }}
                     >
                         Logout
-                    </button>
+                    </button>) : (<button
+                        type="button"
+                        className="mt-4 w-full rounded-md px-3 py-2 text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black bg-[#3C949E] hover:bg-[#024F55]"
+                        onClick={() => {
+                        loginWithGoogleAuth();
+                        toggleMenu();
+                        }}
+                    >
+                        LogIn
+                    </button>)}
                     </div>
                 </div>
                 </div>
