@@ -100,7 +100,7 @@ function Home() {
         <div className="w-screen h-[90vh] px-2 md:px-6 py-4 md:py-6 md:flex">
                 <div className="w-full md:w-1/2 md:flex justify-center flex-col md:ml-12 px-4">
                     {username ? (<h1 className='typed-out md:text-4xl font-semibold pb-6 text-2xl'>Hello {username},</h1>) : (null)}
-                <h1 className="text-black md:text-8xl font-semibold mb-10 text-6xl">
+                <h1 className="text-black md:text-8xl font-semibold mb-10 text-5xl">
                     <span className="text-[#024F55]">Welcome</span> to ShareSphere community...
                 </h1>
                 <p className="text-gray-600 font-semibold md:text-xl">
