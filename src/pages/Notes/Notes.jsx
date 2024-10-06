@@ -35,6 +35,10 @@ const Notes = ({post}) => {
     const [viewURL, setViewURL] = useState("");
     const [finalDocs, setFinalDocs] = useState({});
 
+    const [searchItem, setSearchItem] = useState('');
+    const [searchResults, setSearchResults] = useState([]);
+    const [showSearchResults, setShowSearchedResults] = useState(false);
+
     if (post) {
         doc.title = post.title;
         doc.content = post.content;
@@ -111,6 +115,17 @@ const Notes = ({post}) => {
         }
     }
 
+    const handleSearch = (e) => {
+        setSearchItem(e.target.value);
+    }
+
+    const handleSearchClick = () => {
+        const filterResult = finalDocs.filter((result) => result.title.toLowerCase().includes(searchItem.toLowerCase())
+        )
+        setSearchResults(filterResult);
+        setShowSearchedResults(true);
+    }
+
     const fetchUser = useCallback(async () => {
         try {
         const userData = await authservice.getCurrentAccount();
@@ -151,6 +166,31 @@ const Notes = ({post}) => {
     return (
         <div className="lg:px-[4rem] px-5 pt-10 py-[1rem] font-poppins bg-gradient-to-br from-[#F1F9FB] to-[#D5F2F8] min-h-screen">
         {/* add doc section  */}
+        
+            <div className="grid grid-cols-4 gap-3 lg:gap-[3rem] h-[4rem] mb-10 justify-center items-center px-6 rounded bg-[#9BD8DB] shadow-lg">
+
+                <div className="col-span-3">
+                    <Input
+                    type="text"
+                    id="searchItem"
+                    name="searchItem"
+                    value={searchItem}
+                    onChange={handleSearch}
+                    placeholder="Enter Note Title to Search : "
+                    required={true}
+                    />
+                </div>
+
+                <div className="flex flex-col gap-2 justify-end">
+                    <Button
+                    className="bg-[#3C949E] hover:bg-[#024F55]"
+                    onClick={handleSearchClick}
+                    >
+                    Search 
+                    </Button>
+                </div>
+                </div>
+            
         <Card className='shadow-lg'>
             <CardHeader>
             <CardTitle className='text-[#024F55]'>Add Notes</CardTitle>
@@ -213,7 +253,63 @@ const Notes = ({post}) => {
             </CardContent>
             </form>
         </Card>
+        
+        {showSearchResults ? (
+            <div className="mt-10">
+            <h2 className="text-xl font-semibold text-[#024F55]">Filtered Notes ({searchResults.length})</h2>
 
+            {searchResults.length >0 ? (
+                <div className="mt-10 flex gap-y-6 justify-center items-center">
+                    <ul className="flex flex-col justify-center flex-wrap lg:flex-row gap-6">
+                        {searchResults.map((item) => (
+                        <Card className="flex items-center overflow-y-auto shadow-xl pt-6 w-80 min-h-60 max-h-[450px]" key={item.$id}>
+                            <CardContent className="flex w-full items-center justify-between flex-col gap-5">
+                            <div className="flex flex-col items-center justify-between gap-4 w-full">
+                                <div>
+                                    <img src={note} alt="note-logo" width='50px' className='rounded-sm'/>
+                                </div>
+                                <div className="font-semibold">{item.title.toString()}</div>
+                                <div className="">
+                                {" "}
+                                <span>{item.content.toString()}</span>
+                                </div>
+                                <div className="flex gap-4">
+                                    <Button className='bg-[#3C949E] hover:bg-[#024F55]'
+                                    onClick={() => handlePreview(item.featuredDoc)}
+                                    >
+                                        <a href={viewURL} target='blank'><span>View</span></a>
+                                    </Button>
+                                    
+                                    {(item.userId === userId || userLabel === 'admin') ? <div className="flex items-center gap-8">
+                                    <Button
+                                    className="flex items-center gap-1 bg-[#3C949E] hover:bg-[#024F55]"
+                                    onClick={() => handleDelete(item.$id, item.featuredDoc)}
+                                    >
+                                    <i className="fa-solid fa-trash"></i>
+                                    </Button>
+                                    </div> : (null)}
+                                </div>
+                                
+                                    <Button className='bg-[#3C949E] hover:bg-[#024F55]'
+                                    onClick={() => handleDownload(item.featuredDoc)}
+                                    >
+                                        <a href={downURL}><span>Download</span></a>
+                                    </Button>
+                            </div>
+                            </CardContent>
+                        </Card>
+                        ))}
+                    </ul>
+                </div>
+            ) : (
+                <div className="mt-10 flex flex-col gap-y-6">
+                No search results found for "{searchItem}", please request notes!
+                </div>
+            )}
+        </div>
+            
+        ) : (null)}
+        
         {/* all notes section  */}
         {loaderK ? (
             <div className="mt-10 text-center">
